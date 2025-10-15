@@ -16,7 +16,7 @@ describe("Login", () => {
     it("Invalid password", () => {
         cy.get('@credentials').then((credentials) => {
             cy.login(credentials.validUsername, credentials.invalidPassword)
-            cy.on('window:alert', (alertText) => { expect(alertText).to.eq("User does not exist."); });
+            cy.on('window:alert', (alertText) => { expect(alertText).to.eq("Wrong password."); });
         });
     })
 
@@ -24,6 +24,5 @@ describe("Login", () => {
         cy.get("#login2").click()
         cy.contains('button', 'Log in').click()    
         cy.on('window:alert', (alertText) => { expect(alertText).to.eq("Please fill out Username and Password."); });
-        
     })
 })
